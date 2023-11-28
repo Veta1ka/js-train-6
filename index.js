@@ -164,12 +164,10 @@ function changeRole(array, newRole) {
   // Ітеруємося по масиву об'єктів за допомогою циклу "for of"
   // Змінюємо роль кожного користувача на нове ім'я
   // Виводимо об'єкт на консоль
-  for (const chan of array) {
-    if (array) {
-      const { name, role } = array;
-    }
+  for (let chan of array) {
+    chan.role = newRole;
+    console.log(chan);
   }
-  console.log(array);
 }
 
 console.log("Завдання 10 ====================================");
@@ -192,6 +190,16 @@ let product = {
 function printProductDetails(obj) {
   // Використовуємо деструктуризацію для отримання значень productName, price i також значень companyName, country вкладеного об'єкту manufacturer
   // Виводимо productName, price, companyName та country на консоль
+  let {
+    productName,
+    price,
+    manufacturer: { companyName, country },
+  } = obj;
+  // let {productName,price,manufacturer}=obj;
+  // console.log(
+  //   `${productName}, ${price}, ${manufacturer.companyName}, ${manufacturer.country}`
+  // );
+  console.log(productName, price, companyName, country);
 }
 
 console.log("Завдання 11 ====================================");
@@ -206,8 +214,11 @@ let planet2 = { name: "Земля", radius: 6371 };
 // Функція для перевірки рівності об'єктів
 function compareObjects(obj1, obj2) {
   // Виводимо результат порівняння об'єктів
+  console.log(obj1 === obj2);
   // Присвоємо obj2 значення об'єкту obj1
+  obj2 = obj1;
   // Виводимо результат порівняння об'єктів
+  console.log(obj1 === obj2);
 }
 
 console.log("Завдання 12 ====================================");
@@ -229,6 +240,8 @@ function showCarInfo({
   country = "Unknown",
 } = {}) {
   // Повертаємо об'єкт зі значеннями властивостей
+  // return `${brand},${year},${country}`;
+  return { brand, year, country };
 }
 
 console.log("Завдання 13 ====================================");
@@ -238,11 +251,15 @@ console.log(showCarInfo(car)); // Виведе { brand: 'BMW', year: 2022, count
 // Створюємо функцію, яка буде додавати нову властивість до масиву
 function addProperty(array) {
   // Додаємо нову властивість customProperty до прототипу Array зі значенням myProperty
+  Array.prototype.customProperty = "myProperty";
+
   // Повертаємо переданий масив з новою властивістю
+  return array;
 }
 
 console.log("Завдання 14 ====================================");
 // Створимо масив newArr з новою властивістю за допомогої нашої функції в яку передамо [1, 2, 3, 4, 5]
-
+// const newArr = [1, 2, 3, 4, 5];
 // Розкоментуйте рядок нижче після виконня завдання для перевірки
-// console.log(newArr.customProperty); // Виведе myProperty
+let newArr = addProperty([1, 2, 3, 4, 5]);
+console.log(newArr.customProperty); // Виведе myProperty
